@@ -7,13 +7,13 @@ const { createPool } = require('mysql2/promise');
 const { fillFormFromDb } = require('./fill_form_from_db');
 
 const CONFIG = {
-  PORT: 3000,
-  HTTPS_PORT: 443,
-  USE_HTTPS: false,
-  HTTP_REDIRECT: false,
-  SSL_KEY_PATH: '/etc/letsencrypt/live/your-domain.com/privkey.pem',
-  SSL_CERT_PATH: '/etc/letsencrypt/live/your-domain.com/fullchain.pem',
-  NODE_ENV: 'production',
+  PORT: process.env.PORT || 3000,
+  HTTPS_PORT: process.env.HTTPS_PORT || 443,
+  USE_HTTPS: process.env.USE_HTTPS === 'true',
+  HTTP_REDIRECT: process.env.HTTP_REDIRECT === 'true',
+  SSL_KEY_PATH: process.env.SSL_KEY_PATH || '/etc/letsencrypt/live/your-domain.com/privkey.pem',
+  SSL_CERT_PATH: process.env.SSL_CERT_PATH || '/etc/letsencrypt/live/your-domain.com/fullchain.pem',
+  NODE_ENV: process.env.NODE_ENV || 'development',
   DB: {
     host: '217.174.153.182',
     port: 3306,
@@ -27,24 +27,23 @@ const { PORT, HTTPS_PORT, USE_HTTPS, HTTP_REDIRECT, SSL_KEY_PATH, SSL_CERT_PATH 
 
 const app = express();
 
-app.use(
-  cors({
-    origin: [
-      'https://booking.visad.co.uk',
-      'https://visad.co.uk',
-      'http://localhost:3000',
-      'https://vault.visad.co.uk',
-    ],
-    credentials: true,
-    allowedHeaders: ['Content-Type', 'Authorization', 'Session-Key', 'Accept'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  }),
-);
+app.use(cors({
+  origin: [
+    "https://booking.visad.co.uk",
+    "https://visad.co.uk",
+    "http://localhost:3000",
+    "https://vault.visad.co.uk"
+  ],
+  credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization", "Session-Key", "Accept"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+}));
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-app.use((req, _res, next) => {
+// Logging
+app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
   next();
 });
@@ -63,22 +62,30 @@ const dbPool = createPool({
 });
 
 
-app.get('/', (_req, res) => {
+// Root endpoint - matching server-python-https.js pattern
+app.get('/', (req, res) => {
   res.json({
     service: 'Schengen Visa PDF Filler (Node)',
     version: '1.0.0',
     status: 'running',
     protocol: USE_HTTPS ? 'https' : 'http',
     endpoints: {
-      fillAustria: 'POST /api/visa/fill-form',
+      fillForm: 'POST /api/visa/fill-form',
       health: 'GET /health',
-      version: 'GET /version',
-    },
+      version: 'GET /version'
+    }
   });
 });
 
-app.get('/health', (_req, res) => res.json({ ok: true }));
-app.get('/version', (_req, res) => res.json({ version: '1.0.0' }));
+// Health check endpoint - matching server-python-https.js pattern
+app.get('/health', (req, res) => {
+  res.json({ ok: true });
+});
+
+// Version endpoint - matching server-python-https.js pattern
+app.get('/version', (req, res) => {
+  res.json({ version: "1.0.0" });
+});
 
 app.post('/api/visa/fill-form', async (req, res, next) => {
   try {
@@ -136,17 +143,18 @@ app.post('/api/visa/fill-form', async (req, res, next) => {
   }
 });
 
-app.use((req, res, next) => {
+// 404 handler
+app.use((req, res) => {
   res.status(404).json({
     success: false,
     error: 'Not found',
-    message: `Route ${req.method} ${req.path} not found`,
+    message: `Route ${req.method} ${req.path} not found`
   });
-  next();
 });
 
+// Error handling - improved with better logging
 app.use((err, req, res, next) => {
-  console.error(`[ERROR] ${new Date().toISOString()}`, err);
+  console.error(`[ERROR] ${new Date().toISOString()}:`, err);
   if (res.headersSent) {
     return next(err);
   }
@@ -154,7 +162,7 @@ app.use((err, req, res, next) => {
     success: false,
     error: 'Internal server error',
     message: CONFIG.NODE_ENV === 'development' ? err.message : 'Something went wrong',
-    ...(CONFIG.NODE_ENV === 'development' && { stack: err.stack }),
+    ...(CONFIG.NODE_ENV === 'development' && { stack: err.stack })
   });
 });
 
@@ -162,7 +170,8 @@ let httpServer;
 let httpsServer;
 
 function startHttpServer() {
-  httpServer = http.createServer(app).listen(PORT, () => {
+  // HTTP Server (default)
+  http.createServer(app).listen(PORT, () => {
     console.log('\n' + '='.repeat(70));
     console.log('🚀 Schengen Visa PDF Filler API (Node Backend)');
     console.log('='.repeat(70));
@@ -183,13 +192,14 @@ function startHttpServer() {
 }
 
 function startHttpsServer() {
+  // HTTPS Server
   try {
     const httpsOptions = {
       key: fs.readFileSync(SSL_KEY_PATH),
-      cert: fs.readFileSync(SSL_CERT_PATH),
+      cert: fs.readFileSync(SSL_CERT_PATH)
     };
 
-    httpsServer = https.createServer(httpsOptions, app).listen(HTTPS_PORT, () => {
+    https.createServer(httpsOptions, app).listen(HTTPS_PORT, () => {
       console.log('\n' + '='.repeat(70));
       console.log('🚀 Schengen Visa PDF Filler API (Node Backend - HTTPS)');
       console.log('='.repeat(70));
@@ -208,18 +218,24 @@ function startHttpsServer() {
       console.log('✅ HTTPS Server is ready and listening for requests!\n');
     });
 
+    // Optional: HTTP to HTTPS redirect server
     if (HTTP_REDIRECT) {
       http.createServer((req, res) => {
-        res.writeHead(301, { Location: `https://${req.headers.host}${req.url}` });
+        res.writeHead(301, { "Location": `https://${req.headers.host}${req.url}` });
         res.end();
       }).listen(PORT, () => {
         console.log(`🔄 HTTP Redirect Server running on port ${PORT} -> HTTPS ${HTTPS_PORT}`);
       });
     }
+
   } catch (error) {
     console.error('❌ Failed to start HTTPS server:', error.message);
     console.log('💡 Falling back to HTTP mode...');
-    startHttpServer();
+
+    // Fallback to HTTP
+    http.createServer(app).listen(PORT, () => {
+      console.log(`📡 HTTP Server (fallback) running on: http://localhost:${PORT}`);
+    });
   }
 }
 
@@ -229,25 +245,26 @@ if (USE_HTTPS) {
   startHttpServer();
 }
 
-async function shutdown(signal) {
-  console.log(`Received ${signal}. Shutting down gracefully...`);
-  try {
-    if (httpServer) {
-      await new Promise((resolve) => httpServer.close(resolve));
-    }
-    if (httpsServer) {
-      await new Promise((resolve) => httpsServer.close(resolve));
-    }
-    await dbPool.end();
-  } catch (err) {
-    console.error('Error during shutdown:', err);
-  } finally {
+// Graceful shutdown
+process.on('SIGTERM', () => {
+  console.log('SIGTERM received, shutting down...');
+  dbPool.end().then(() => {
     process.exit(0);
-  }
-}
+  }).catch((err) => {
+    console.error('Error during shutdown:', err);
+    process.exit(1);
+  });
+});
 
-process.on('SIGINT', shutdown);
-process.on('SIGTERM', shutdown);
+process.on('SIGINT', () => {
+  console.log('\nSIGINT received, shutting down...');
+  dbPool.end().then(() => {
+    process.exit(0);
+  }).catch((err) => {
+    console.error('Error during shutdown:', err);
+    process.exit(1);
+  });
+});
 
 module.exports = app;
 
