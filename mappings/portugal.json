@@ -1,0 +1,80 @@
+{
+  "page0_field4": { "path": "record.first_name" },
+  "page0_field5": { "path": "record.last_name" },
+  "page0_field6": { "path": "record.gender" },
+  "page0_field8": { "path": "record.dob", "format": "DATE_DDMMYYYY" },
+  "page0_field9": { "path": "record.place_of_birth" },
+  "page0_field13": { "path": "record.nationality" },
+  "page0_field15": { "path": "record.passport_no", "uppercase": true },
+  "page0_field16": { "path": "record.passport_issue", "format": "DATE_DDMMYYYY" },
+  "page0_field28": { "path": "record.email" },
+  "page0_field30": { "path": "record.contact_number" },
+  "Text_1": {
+    "paths": [
+      "record.address_line_1",
+      "record.address_line_2",
+      "record.city",
+      "record.zip_code",
+      "record.country"
+    ],
+    "join": ", "
+  },
+  "page1_field8": { "path": "record.address_line_1" },
+  "page1_field10": { "path": "record.city" },
+  "page1_field11": { "path": "record.state_province" },
+  "page1_field13": { "path": "record.zip_code" },
+  "page1_field14": { "path": "record.country" },
+  "page1_field17": { "path": "questions.occupation_title" },
+  "page1_field20": { "path": "questions.company_name" },
+  "page1_field25": {
+    "paths": [
+      "questions.company_address_1",
+      "questions.company_city",
+      "questions.company_zip"
+    ],
+    "join": ", "
+  },
+  "page1_field34": { "path": "record.passport_issue", "format": "DATE_DDMMYYYY" },
+  "page1_field35": { "path": "record.passport_expire", "format": "DATE_DDMMYYYY" },
+  "page1_field38": { "path": "questions.travel_date_from", "format": "DATE_DDMMYYYY" },
+  "page1_field39": { "path": "questions.travel_date_to", "format": "DATE_DDMMYYYY" },
+  "page1_field42": { "path": "questions.primary_destination" },
+  "page1_field56": { "path": "questions.hotel_name" },
+  "page1_field57": { "path": "questions.hotel_address_1" },
+  "page1_field58": { "path": "questions.hotel_city" },
+  "page1_field59": { "path": "questions.hotel_zip" },
+  "page1_field63": { "path": "questions.inviting_person_first_name" },
+  "page1_field64": { "path": "questions.inviting_person_surname" },
+  "page1_field65": { "path": "questions.inviting_person_phone" },
+  "page2_field5": { "path": "questions.travel_date_from", "format": "DATE_DDMMYYYY" },
+  "page2_field6": { "path": "questions.travel_date_to", "format": "DATE_DDMMYYYY" },
+  "page2_field10": { "path": "questions.travel_covered_by" },
+  "page2_field13": { "path": "questions.sponsor_full_name" },
+  "page2_field15": {
+    "paths": [
+      "questions.sponsor_address_1",
+      "questions.sponsor_city",
+      "questions.sponsor_zip"
+    ],
+    "join": ", "
+  },
+  "page2_field20": { "path": "questions.sponsor_phone" },
+  "page2_field23": { "path": "questions.inviting_company_name" },
+  "page2_field24": { "path": "questions.inviting_company_address_1" },
+  "page2_field25": { "path": "questions.inviting_company_city" },
+  "page2_field26": { "path": "questions.inviting_company_zip" },
+  "Text_2": { "path": "questions.host_name" },
+  "Text_3": { "path": "questions.host_phone" },
+  "page3_field1": { "path": "record.first_name" },
+  "page3_field2": { "path": "record.last_name" },
+  "page3_field3": { "path": "record.passport_no", "uppercase": true },
+  "page3_field4": { "path": "record.passport_expire", "format": "DATE_DDMMYYYY" },
+  "page3_field5": { "path": "record.nationality" },
+  "page3_field19": { "path": "questions.travel_date_from", "format": "DATE_DDMMYYYY" },
+  "page3_field20": { "path": "questions.travel_date_to", "format": "DATE_DDMMYYYY" },
+  "page3_field21": { "path": "questions.primary_destination" },
+  "page3_field22": { "path": "questions.hotel_name" },
+  "page4_field1": { "path": "record.first_name" },
+  "page4_field2": { "path": "record.last_name" }
+}
+

@@ -1,0 +1,320 @@
+{
+  "text_1njre": {
+    "label": "1. Surname (Family name)",
+    "path": "record.last_name"
+  },
+  "text_2anve": {
+    "label": "2. Surname at birth (Former family name)",
+    "path": "record.last_name_at_birth"
+  },
+  "text_3mruo": {
+    "label": "3. First name(s) (Given names)",
+    "path": "record.first_name"
+  },
+
+  "textarea_5qwvx": {
+    "label": "5. Place of birth",
+    "path": "record.place_of_birth"
+  },
+
+  "text_7tidh": {
+    "label": "6. Country of birth",
+    "path": "record.country_of_birth"
+  },
+
+  "text_4dgtf": {
+    "label": "7. Current nationality",
+    "path": "record.nationality"
+  },
+
+  "text_8gkij": {
+    "label": "7b. Nationality at birth (if different)",
+    "path": "record.nationality_at_birth"
+  },
+
+  "textarea_6uvvi": {
+    "label": "7c. Other nationalities",
+    "path": "record.other_nationalities",
+    "join": ", ",
+    "paths": ["record.other_nationality_1", "record.other_nationality_2"]
+  },
+
+  "text_9vztw": {
+    "label": "11. National identity number (if applicable)",
+    "path": "record.national_id"
+  },
+
+  "radio_group_10lbxx_group_3": {
+    "label": "8. Sex",
+    "type": "radio",
+    "path": "record.gender",
+    "map": "NEEDS_MANUAL_EXPORT_VALUE_CHECK"
+  },
+
+  "textarea_20wewr": {
+    "label": "9. Marital status (Other – specify)",
+    "path": "record.marital_status_other"
+  },
+
+  "textarea_21vaqg": {
+    "label": "10. Parental authority/legal guardian (name, address, contact details)",
+    "paths": ["record.guardian_name", "record.guardian_address", "record.guardian_phone", "record.guardian_email"],
+    "join": "\n"
+  },
+
+  "textarea_28sdbw": {
+    "label": "12. Type of travel document (other – specify)",
+    "path": "record.travel_document_other"
+  },
+
+  "text_29blua": {
+    "label": "13. Number of travel document",
+    "path": "record.passport_number"
+  },
+
+  "text_31hivy": {
+    "label": "14. Date of issue",
+    "path": "record.passport_issue_date",
+    "format": "DATE_DDMMYYYY"
+  },
+
+  "text_30fnzs": {
+    "label": "15. Valid until",
+    "path": "record.passport_expiry_date",
+    "format": "DATE_DDMMYYYY"
+  },
+
+  "textarea_32vlmq": {
+    "label": "16. Issued by (country)",
+    "path": "record.passport_issued_by"
+  },
+
+  "text_33yqgk": {
+    "label": "17. Family member: Surname",
+    "path": "record.eufamily_last_name"
+  },
+
+  "text_34sqop": {
+    "label": "17. Family member: First name",
+    "path": "record.eufamily_first_name"
+  },
+
+  "text_35dwky": {
+    "label": "17. Family member: Date of birth",
+    "path": "record.eufamily_dob",
+    "format": "DATE_DDMMYYYY"
+  },
+
+  "text_36uqyv": {
+    "label": "17. Family member: Nationality",
+    "path": "record.eufamily_nationality"
+  },
+
+  "text_37bdjx": {
+    "label": "17. Family member: Document number",
+    "path": "record.eufamily_document_number"
+  },
+
+  "radio_group_10lbxx_group_1": {
+    "label": "9. Marital status",
+    "type": "radio",
+    "path": "record.marital_status",
+    "map": "NEEDS_MANUAL_EXPORT_VALUE_CHECK"
+  },
+
+  "textarea_44pahq": {
+    "label": "18. Family relationship (Other – specify)",
+    "path": "record.family_relation_other"
+  },
+
+  "textarea_105vqtj": {
+    "label": "19. Home address and e-mail address",
+    "paths": [
+      "record.address_line_1",
+      "record.address_line_2",
+      "record.city",
+      "record.state",
+      "record.zip_code",
+      "record.country",
+      "record.email"
+    ],
+    "join": "\n"
+  },
+
+  "text_47mbcn": {
+    "label": "19. Telephone number(s)",
+    "path": "record.phone"
+  },
+
+  "text_48ppjl": {
+    "label": "20. Residence in other country – permit number",
+    "path": "record.residence_permit_number"
+  },
+
+  "text_49tsgm": {
+    "label": "20. Residence permit valid until",
+    "path": "record.residence_permit_valid_until",
+    "format": "DATE_DDMMYYYY"
+  },
+
+  "text_50lypa": {
+    "label": "21. Current occupation",
+    "path": "record.occupation"
+  },
+
+  "textarea_52thsc": {
+    "label": "22. Employer / Education establishment",
+    "paths": [
+      "record.employer_name",
+      "record.employer_address",
+      "record.employer_phone"
+    ],
+    "join": "\n"
+  },
+
+  "text_62wphv": {
+    "label": "23. Purpose of travel (Other – specify)",
+    "path": "record.travel_purpose_other"
+  },
+
+  "textarea_63pjhf": {
+    "label": "24. Additional information on purpose of stay",
+    "path": "record.additional_purpose_info"
+  },
+
+  "textarea_65opxk": {
+    "label": "25. Member State of main destination",
+    "path": "record.destination_main"
+  },
+
+  "textarea_64mwqb": {
+    "label": "26. Member State of first entry",
+    "path": "record.first_entry_member_state"
+  },
+
+  "text_69twi": {
+    "label": "27. Number of entries requested",
+    "path": "record.entries_requested"
+  },
+
+  "text_70agkd": {
+    "label": "27. Intended date of arrival",
+    "path": "record.arrival_date",
+    "format": "DATE_DDMMYYYY"
+  },
+
+  "text_73paat": {
+    "label": "27. Intended date of departure",
+    "path": "record.departure_date",
+    "format": "DATE_DDMMYYYY"
+  },
+
+  "text_74dmdh": {
+    "label": "28. Fingerprints collected previously (Yes/No)",
+    "path": "record.fingerprints_collected"
+  },
+
+  "text_75qqeg": {
+    "label": "28. Date (if known)",
+    "path": "record.fingerprints_date",
+    "format": "DATE_DDMMYYYY"
+  },
+
+  "text_77mbzx": {
+    "label": "28. Visa number (if known)",
+    "path": "record.previous_visa_number"
+  },
+
+  "text_76mmpo": {
+    "label": "29. Entry permit – issued by",
+    "path": "record.entry_permit_issued_by"
+  },
+
+  "textarea_78mohq": {
+    "label": "29. Entry permit – validity period",
+    "paths": ["record.entry_permit_valid_from", "record.entry_permit_valid_until"],
+    "join": " to "
+  },
+
+  "textarea_80jobd": {
+    "label": "30. Inviting person / hotel (name, address)",
+    "paths": [
+      "record.inviter_name",
+      "record.inviter_address_1",
+      "record.inviter_address_2",
+      "record.inviter_city",
+      "record.inviter_country"
+    ],
+    "join": "\n"
+  },
+
+  "textarea_79lone": {
+    "label": "30. Inviting person contact details",
+    "paths": ["record.inviter_phone", "record.inviter_email"],
+    "join": "\n"
+  },
+
+  "textarea_81ehve": {
+    "label": "31. Inviting company / organization",
+    "paths": [
+      "record.inviting_company_name",
+      "record.inviting_company_address",
+      "record.inviting_company_contact"
+    ],
+    "join": "\n"
+  },
+
+  "textarea_82qrkf": {
+    "label": "32. Sponsor details",
+    "paths": [
+      "record.sponsor_name",
+      "record.sponsor_address",
+      "record.sponsor_city",
+      "record.sponsor_country"
+    ],
+    "join": "\n"
+  },
+
+  "textarea_83cozc": {
+    "label": "32. Sponsor means of support (Other – specify)",
+    "path": "record.sponsor_support_other"
+  },
+
+  "text_84sdaz": {
+    "label": "Sponsor telephone number",
+    "path": "record.sponsor_phone"
+  },
+
+  "radio_group_10lbxx_group_2": {
+    "label": "32. Means of support (cash/credit/etc.)",
+    "type": "radio",
+    "path": "record.means_of_support",
+    "map": "NEEDS_MANUAL_EXPORT_VALUE_CHECK"
+  },
+
+  "textarea_99jgzx": {
+    "label": "33. Form filled by (Surname)",
+    "path": "record.filled_by_last_name"
+  },
+
+  "textarea_101ijlk": {
+    "label": "33. Form filled by (Address)",
+    "path": "record.filled_by_address"
+  },
+
+  "textarea_100edhk": {
+    "label": "33. Form filled by (Contact)",
+    "paths": ["record.filled_by_email", "record.filled_by_phone"],
+    "join": ", "
+  },
+
+  "textarea_106yvpa": {
+    "label": "Attached documents / references",
+    "paths": [
+      "record.booking_documents",
+      "record.evisa_document",
+      "record.share_code_document"
+    ],
+    "join": "\n"
+  }
+}
